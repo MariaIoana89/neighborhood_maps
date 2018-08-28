@@ -9,7 +9,7 @@ It uses the Google Maps API and a Forsquare API. This project was bootstrapped w
 google-maps-react.
 
 # Instructions
-Clone this repository
+Clone this repository https://github.com/MariaIoana89/neighborhood_maps 
 In your terminal go to the root of this repository
 Run npm install
 Run npm start
