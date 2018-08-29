@@ -22,7 +22,7 @@ class MyMap extends Component {
 	render() {
 
 		const bound = new this.props.google.maps.LatLngBounds()
-		const expression = new RegExp(escregexp(this.props.query).toLowerCase().trim())
+		const trimQuery = new RegExp(escregexp(this.props.query).toLowerCase().trim())
 
 	    for (let i = 0; i < this.props.locations.length; i++) {
       		bound.extend(this.props.locations[i].position)
@@ -38,7 +38,7 @@ class MyMap extends Component {
 
 				{
 					this.props.locations.filter(location => {
-						return expression.test(location.title.toLowerCase())
+						return trimQuery.test(location.title.toLowerCase())
 					})
 					.map(location => {
 						return (
@@ -51,7 +51,7 @@ class MyMap extends Component {
 				                address={location.address}
 				                state={location.state}
 				                postalCode={location.postalCode}
-                        onClick={this.onMarkerClick}
+                        		onClick={this.onMarkerClick}
 							/>
 						)
 					})

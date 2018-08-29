@@ -5,7 +5,7 @@ function PlaceFilter (props) {
 	return (
 		<input
 			type="text" 
-			placeholder="Filter locations..."
+			placeholder="Filter locations"
 			value={props.queryValue} 
 			onClick={props.clearQuery} 
 			onChange={props.onQueryChange} 
