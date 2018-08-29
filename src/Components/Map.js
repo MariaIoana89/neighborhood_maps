@@ -20,28 +20,24 @@ class MyMap extends Component {
 	}
 
 	render() {
-
-		const bound = new this.props.google.maps.LatLngBounds()
-		const trimQuery = new RegExp(escregexp(this.props.query).toLowerCase().trim())
-
-	    for (let i = 0; i < this.props.locations.length; i++) {
-      		bound.extend(this.props.locations[i].position)
-    	}
-
+	const {places, query, google} = this.props;
+	let locations;
+	
+	if(query) {
+		const match = new RegExp(escregexp(query), 'i');
+		locations = places.filter((place) => match.test(place.title))
+	} else {
+		locations = places;
+	}
 		return (
 			<Map
-				google={this.google} 
+				google={google} 
 				initialCenter={{lat:44.26239950000001, lng:28.6187464}} 
-				zoom={13} 
-				bounds={bound}				
+				zoom={16} 				
 			>
-
 				{
-					this.props.locations.filter(location => {
-						return trimQuery.test(location.title.toLowerCase())
-					})
-					.map(location => {
-						return (
+				locations.map((marker) => {
+					return (	
 							<Marker 
 								key={location.id} 
 								position={{ lat: location.position.lat, lng: location.position.lng}} 
@@ -53,12 +49,12 @@ class MyMap extends Component {
 				                postalCode={location.postalCode}
                         		onClick={this.onMarkerClick}
 							/>
-						)
+							)
 					})
 				}
 
 				<InfoWindow 
-				marker={this.state.activeMaker} 
+				marker={this.state.activeMarker} 
 				visible={this.state.displayInfoWindow}>
 					<div>
 					    <h2>{this.state.selectedLocation.title}</h2>
@@ -72,7 +68,6 @@ class MyMap extends Component {
 		)
 	}
 }
-
 
 export default GoogleApiWrapper({
 	apiKey: 'AIzaSyAjzYNXjVTALv4l2UqX6UQJYSuX_wZ0cQ8'

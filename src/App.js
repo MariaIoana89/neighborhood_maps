@@ -15,7 +15,8 @@ class App extends Component {
     fetch('https://api.foursquare.com/v2/venues/explore?ll=44.26239950000001,28.6187464&client_id=1KSJMZWDGUOZBYIDY3IDQLEFN2HT55TM42QVKGVFAGLG1B40&client_secret=BLPQ4BWFZNCRFONUCD22UVRFR0JYK01CGGDZGWU4F1A3DUQM&v=20180827')
     .then(response => response.json())
     .then(data => {
-      const locations = data.response.items.map(item => {
+      const locations = data.response.venues
+      .map(item => {
         return {
           position: { lat: item.location.lat, lng: item.location.lng },
           title: item.name,
@@ -40,7 +41,7 @@ class App extends Component {
   		query: event
   	})
   	for (const location of this.state.locations) {
-  		if (location.title === event.target) {
+  		if (location.title === event.target.textContent) {
   			this.setState({
   				locationInfo: location
   			})
@@ -49,7 +50,7 @@ class App extends Component {
   }
 
 clearQuery = () => {
-		this.state({
+		this.setState({
 			query: ''
 		})
 	}
