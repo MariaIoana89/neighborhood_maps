@@ -58,13 +58,13 @@ class MyMap extends Component {
 				}
 
 				<InfoWindow 
-				marker={this.state.selectedMaker} 
-				visible={this.state.selectedMarkerInfoWindow}>
+				marker={this.state.activeMaker} 
+				visible={this.state.displayInfoWindow}>
 					<div>
-					    <h2>{this.state.selectedPlace.title}</h2>
-					    <h3>{this.state.selectedPlace.category}</h3>
-					    <p>Address: {this.state.selectedPlace.address}</p>				    
-					    <p>Postal Code: {this.state.selectedPlace.postalCode}</p>
+					    <h2>{this.state.selectedLocation.title}</h2>
+					    <h3>{this.state.selectedLocation.category}</h3>
+					    <p>Address: {this.state.selectedLocation.address}</p>				    
+					    <p>Postal Code: {this.state.selectedLocation.postalCode}</p>
 				    </div>
 				</InfoWindow>
 
