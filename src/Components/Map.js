@@ -39,14 +39,14 @@ class MyMap extends Component {
 				locations.map((marker) => {
 					return (	
 							<Marker 
-								key={location.id} 
-								position={{ lat: location.position.lat, lng: location.position.lng}} 
-								title={location.title} 
+								key={marker.id} 
+								position={{ lat: marker.position.lat, lng: marker.position.lng}} 
+								title={marker.title} 
 								animation={this.google.maps.Animation.BOUNCE}
-				                category={location.category}
-				                address={location.address}
-				                state={location.state}
-				                postalCode={location.postalCode}
+				                category={marker.category}
+				                address={marker.address}
+				                state={marker.state}
+				                postalCode={marker.postalCode}
                         		onClick={this.onMarkerClick}
 							/>
 							)
